@@ -7,15 +7,33 @@
             position: relative;
         }
 
-        #refreshButton {
+        .refreshButton {
             position: absolute;
-            top: 0;
-            left: 0;
             margin: 10px;
             padding: 5px 10px;
             background-color: #fff;
             border: 1px solid #000;
             cursor: pointer;
+        }
+
+        .topLeft {
+            top: 0;
+            left: 0;
+        }
+
+        .topRight {
+            top: 0;
+            right: 0;
+        }
+
+        .bottomLeft {
+            bottom: 0;
+            left: 0;
+        }
+
+        .bottomRight {
+            bottom: 0;
+            right: 0;
         }
     </style>
     <script>
@@ -51,11 +69,24 @@
             document.getElementById('nestedBrowser').appendChild(nestedBrowser);
 
             // 创建刷新倒计时B的按钮
+            var refreshButtonTopLeft = createRefreshButton('topLeft');
+            var refreshButtonTopRight = createRefreshButton('topRight');
+            var refreshButtonBottomLeft = createRefreshButton('bottomLeft');
+            var refreshButtonBottomRight = createRefreshButton('bottomRight');
+
+            document.getElementById('nestedBrowser').appendChild(refreshButtonTopLeft);
+            document.getElementById('nestedBrowser').appendChild(refreshButtonTopRight);
+            document.getElementById('nestedBrowser').appendChild(refreshButtonBottomLeft);
+            document.getElementById('nestedBrowser').appendChild(refreshButtonBottomRight);
+        }
+
+        function createRefreshButton(positionClass) {
+            // 创建刷新倒计时B的按钮
             var refreshButton = document.createElement('button');
             refreshButton.innerText = '刷新倒计时B';
             refreshButton.onclick = resetCountdownB;
-            refreshButton.id = 'refreshButton';
-            document.getElementById('nestedBrowser').appendChild(refreshButton);
+            refreshButton.className = 'refreshButton ' + positionClass;
+            return refreshButton;
         }
 
         function startCountdownB() {
